@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OTS Exam Prep</title>
+<meta name="description" content="150 scenario-based, Bloom's-taxonomy practice questions for the OTS leadership exam, with a 90-minute timer.">
+<style>
+:root{
+  --bg:#f4f5f7; --surface:#ffffff; --surface-2:#eef1f5; --ink:#141a24; --ink-2:#4a5466; --ink-3:#7a8394;
+  --line:#dde2ea; --accent:#1d4ed8; --accent-ink:#ffffff; --accent-soft:#e3ebfd;
+  --good:#15803d; --good-soft:#e3f4e8; --bad:#b91c1c; --bad-soft:#fbe6e6; --flag:#b45309; --flag-soft:#fdf0dc;
+  --shadow:0 1px 2px rgba(16,24,40,.05),0 4px 16px rgba(16,24,40,.06); --radius:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1116; --surface:#161a22; --surface-2:#1e2430; --ink:#e8ebf1; --ink-2:#aab2c0; --ink-3:#7c8596;
+  --line:#2a3140; --accent:#6d93ff; --accent-ink:#0b1020; --accent-soft:#1d2a4a;
+  --good:#4ade80; --good-soft:#15291d; --bad:#f87171; --bad-soft:#2f1717; --flag:#fbbf24; --flag-soft:#2e2412;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1116; --surface:#161a22; --surface-2:#1e2430; --ink:#e8ebf1; --ink-2:#aab2c0; --ink-3:#7c8596;
+  --line:#2a3140; --accent:#6d93ff; --accent-ink:#0b1020; --accent-soft:#1d2a4a;
+  --good:#4ade80; --good-soft:#15291d; --bad:#f87171; --bad-soft:#2f1717; --flag:#fbbf24; --flag-soft:#2e2412;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
+.hidden{display:none!important}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;height:56px}
+.brand{font-weight:700;letter-spacing:.01em;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand .mark{padding:0 6px;min-width:26px;height:26px;border-radius:7px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:13px;font-weight:800}
+.spacer{flex:1}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:15px}
+.timer.warn{background:var(--flag-soft);color:var(--flag);border-color:transparent}
+.timer.crit{background:var(--bad-soft);color:var(--bad);border-color:transparent;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.6}}
+.iconbtn{border:1px solid var(--line);background:var(--surface);border-radius:10px;height:36px;min-width:36px;padding:0 10px;font-size:14px}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+h1{font-size:clamp(26px,5vw,36px);line-height:1.15;margin:28px 0 8px;letter-spacing:-.01em}
+.lede{color:var(--ink-2);margin:0 0 22px;max-width:60ch}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 22px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:110px}
+.stat b{display:block;font-size:22px;line-height:1.1}
+.stat span{color:var(--ink-3);font-size:13px}
+.field{margin-bottom:20px}
+.field:last-of-type{margin-bottom:8px}
+.label{font-weight:650;font-size:14px;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+.label small{font-weight:400;color:var(--ink-3)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{flex:1 1 0;min-width:72px;border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;font-weight:600;transition:border-color .15s,background .15s}
+.seg button:hover{border-color:var(--ink-3)}
+.seg button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.seg button small{display:block;font-weight:400;font-size:12px;color:var(--ink-3)}
+.seg button[aria-pressed="true"] small{color:inherit;opacity:.8}
+.primary{display:block;width:100%;border:0;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:17px;border-radius:12px;padding:14px 18px;margin-top:18px}
+.primary:hover{filter:brightness(1.07)}
+.secondary{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 16px;font-weight:650}
+.note{font-size:13px;color:var(--ink-3);margin-top:10px;min-height:1em}
+.tips{margin:22px 0 40px;color:var(--ink-2);font-size:14px}
+.tips h3{font-size:14px;color:var(--ink);margin:0 0 6px}
+.tips ul{margin:0;padding-left:18px}
+.tips li{margin:3px 0}
+
+/* quiz */
+.progress{height:4px;background:var(--surface-2);border-radius:99px;overflow:hidden;margin:16px 0 14px}
+.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.qmeta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;font-size:13px}
+.qnum{font-weight:700;color:var(--ink-2)}
+.tag{padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);font-weight:600}
+.tag.bloom{background:var(--accent-soft);color:var(--accent)}
+.qtext{font-size:clamp(17px,2.4vw,19px);font-weight:600;line-height:1.5;margin:4px 0 18px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:13px 14px;transition:border-color .12s,background .12s}
+.opt:hover:not(:disabled){border-color:var(--ink-3)}
+.opt .k{flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--surface-2);font-weight:700;font-size:14px}
+.opt .t{padding-top:2px}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.sel .k{background:var(--accent);color:var(--accent-ink)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.right .k{background:var(--good);color:var(--surface)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .k{background:var(--bad);color:var(--surface)}
+.opt:disabled{cursor:default}
+.explain{margin-top:14px;padding:14px;border-radius:12px;background:var(--surface-2);font-size:15px;color:var(--ink-2)}
+.explain b{color:var(--ink)}
+.navbar{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.navbar .secondary{padding:10px 14px}
+.navbar .grow{flex:1}
+.flagbtn[aria-pressed="true"]{border-color:var(--flag);color:var(--flag);background:var(--flag-soft)}
+.submitbtn{border:0;background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:10px 16px;font-weight:700}
+.palette{margin-top:16px}
+.palette .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}
+.palette button{height:38px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);font-size:13px;font-weight:600;position:relative}
+.palette button.ans{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+.palette button.cur{outline:2px solid var(--accent);outline-offset:1px}
+.palette button.flg::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--flag)}
+.palette button.ok{background:var(--good-soft);color:var(--good);border-color:transparent}
+.palette button.no{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-3);margin:10px 0 0}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;background:var(--surface-2)}
+.legend .l-ans::before{background:var(--accent-soft);outline:1px solid var(--accent)}
+.legend .l-flg::before{background:var(--flag);border-radius:50%}
+.kbd{font-size:12px;color:var(--ink-3);margin-top:12px}
+.kbd kbd{font:inherit;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 5px;background:var(--surface)}
+
+/* results */
+.score{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.ring{--p:0;width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--ring-c,var(--accent)) calc(var(--p)*1%),var(--surface-2) 0);display:grid;place-items:center;flex:none}
+.ring div{width:100px;height:100px;border-radius:50%;background:var(--surface);display:grid;place-items:center;text-align:center}
+.ring b{font-size:28px;line-height:1}
+.ring span{font-size:12px;color:var(--ink-3)}
+.scoretext h2{margin:0 0 4px;font-size:22px}
+.scoretext p{margin:2px 0;color:var(--ink-2)}
+.section-h{font-size:16px;margin:26px 0 10px}
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(120px,1.3fr) 2fr 70px;gap:10px;align-items:center;font-size:14px}
+.bar .track{height:10px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.bar .fill{height:100%;border-radius:99px}
+.bar .num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.actions .primary{width:auto;margin:0;flex:1 1 200px}
+.actions .secondary{flex:1 1 160px}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filters button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600}
+.filters button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.rev{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;background:var(--surface)}
+.rev .qtext{font-size:16px;margin:6px 0 10px}
+.rev .ans{font-size:14px;margin:4px 0;display:flex;gap:8px}
+.rev .ans b{flex:none}
+.rev .mark-ok{color:var(--good)}
+.rev .mark-no{color:var(--bad)}
+.rev .explain{margin-top:10px;font-size:14px}
+
+/* modal + toast */
+.modal{position:fixed;inset:0;background:rgba(5,10,20,.5);display:grid;place-items:center;padding:16px;z-index:50}
+.modal .card{max-width:420px;width:100%}
+.modal h3{margin:0 0 8px}
+.modal p{margin:0 0 16px;color:var(--ink-2)}
+.modal .row{display:flex;gap:10px}
+.modal .row button{flex:1}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;z-index:60;box-shadow:var(--shadow)}
+footer{color:var(--ink-3);font-size:12px;text-align:center;padding:24px 0 32px}
+@media (max-width:560px){
+  .card{padding:16px}
+  .bar{grid-template-columns:1fr 60px}
+  .bar .track{grid-column:1/-1;order:3}
+  .brand .full{display:none}
+  .navbar .secondary{padding:10px 11px}
+  .kbd{display:none}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><div class="mark">OTS</div><span class="full">Leadership Exam Prep</span></div>
+    <div class="spacer"></div>
+    <div id="qcounter" class="tag hidden"></div>
+    <div id="timer" class="timer hidden" aria-live="off">90:00</div>
+    <button id="themeBtn" class="iconbtn" title="Toggle light/dark" aria-label="Toggle light or dark theme">☾</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HOME -->
+  <section id="home">
+    <h1>OTS Leadership Exam Practice</h1>
+    <p class="lede">Scenario-based questions built from the Modules 1–3 study guide and written across Bloom's taxonomy levels: remember, understand, apply, analyze, and evaluate. Questions and answer choices are shuffled every attempt.</p>
+    <div class="stats">
+      <div class="stat"><b id="statTotal">150</b><span>questions</span></div>
+      <div class="stat"><b>20</b><span>topics</span></div>
+      <div class="stat"><b>3</b><span>modules</span></div>
+      <div class="stat"><b>90</b><span>minute exam</span></div>
+    </div>
+    <div class="card">
+      <div class="field">
+        <div class="label">Number of questions</div>
+        <div class="seg" id="countSeg">
+          <button data-v="10">10</button><button data-v="20">20</button><button data-v="50">50</button><button data-v="150">All 150</button>
+        </div>
+      </div>
+      <div class="field">
+        <div class="label">Modules <small id="poolNote"></small></div>
+        <div class="seg" id="modSeg">
+          <button data-v="1">Module 1<small>Values &amp; Constitution</small></button>
+          <button data-v="2">Module 2<small>Leadership</small></button>
+          <button data-v="3">Module 3<small>Warfighting &amp; Justice</small></button>
+        </div>
+      </div>
+      <div class="field">
+        <div class="label">Timer</div>
+        <div class="seg" id="timerSeg">
+          <button data-v="exam">90 minutes<small>Exam limit</small></button>
+          <button data-v="scaled">Scaled<small>36 sec / question</small></button>
+          <button data-v="off">Untimed<small>No clock</small></button>
+        </div>
+      </div>
+      <div class="field">
+        <div class="label">Mode</div>
+        <div class="seg" id="modeSeg">
+          <button data-v="exam">Exam<small>Score at the end</small></button>
+          <button data-v="study">Study<small>Instant feedback</small></button>
+        </div>
+      </div>
+      <button class="primary" id="startBtn">Start</button>
+      <div class="note" id="startNote"></div>
+    </div>
+    <div class="tips">
+      <h3>Test-taking reminders from the study guide</h3>
+      <ul>
+        <li><b>RTFQ &amp; RTFA</b>: read the full question and every answer before choosing.</li>
+        <li>Full Range Leadership: the answer that blends styles is usually right. Never pick laissez-faire.</li>
+        <li>Military planning: if you see “analyze,” think wargaming.</li>
+        <li>Conflict: decide how important the <i>task</i> is and how important the <i>people</i> are, then choose Evade, Comply, Insist, Settle, or Cooperate.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="hidden">
+    <div class="progress"><i id="progBar"></i></div>
+    <div class="card" id="qcard">
+      <div class="qmeta">
+        <span class="qnum" id="qnum"></span>
+        <span class="tag" id="qtopic"></span>
+        <span class="tag bloom" id="qbloom"></span>
+      </div>
+      <div class="qtext" id="qtext"></div>
+      <div class="opts" id="opts"></div>
+      <div class="explain hidden" id="qexplain"></div>
+      <div class="navbar">
+        <button class="secondary" id="prevBtn">← Prev</button>
+        <button class="secondary flagbtn" id="flagBtn" aria-pressed="false">⚑ Flag</button>
+        <span class="grow"></span>
+        <button class="secondary" id="nextBtn">Next →</button>
+        <button class="submitbtn" id="submitBtn">Submit</button>
+      </div>
+      <div class="kbd">Keys: <kbd>A</kbd>–<kbd>D</kbd> or <kbd>1</kbd>–<kbd>4</kbd> answer · <kbd>←</kbd><kbd>→</kbd> move · <kbd>F</kbd> flag</div>
+    </div>
+    <div class="card palette">
+      <div class="label">Question navigator <small id="answeredNote"></small></div>
+      <div class="grid" id="palette"></div>
+      <div class="legend"><span class="l-ans">Answered</span><span class="l-flg">Flagged</span><span>Unanswered</span></div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="hidden">
+    <h1>Results</h1>
+    <div class="card">
+      <div class="score">
+        <div class="ring" id="ring"><div><span><b id="pct">0%</b><br><span id="frac"></span></span></div></div>
+        <div class="scoretext">
+          <h2 id="verdict"></h2>
+          <p id="timeUsed"></p>
+          <p id="unans"></p>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="primary" id="retryMissedBtn">Retry missed questions</button>
+        <button class="secondary" id="newBtn">New quiz</button>
+      </div>
+      <h3 class="section-h">By topic</h3>
+      <div class="bars" id="topicBars"></div>
+      <h3 class="section-h">By Bloom's level</h3>
+      <div class="bars" id="bloomBars"></div>
+    </div>
+    <h3 class="section-h" style="margin-top:28px">Review answers</h3>
+    <div class="filters" id="revFilters">
+      <button data-v="wrong" aria-pressed="true">Missed</button>
+      <button data-v="flag" aria-pressed="false">Flagged</button>
+      <button data-v="all" aria-pressed="false">All</button>
+    </div>
+    <div id="review"></div>
+  </section>
+</main>
+<footer class="wrap">Practice questions written from the course study guide. Not an official OTS exam.</footer>
+
+<div class="modal hidden" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="card">
+    <h3 id="modalTitle">Submit exam?</h3>
+    <p id="modalText"></p>
+    <div class="row">
+      <button class="secondary" id="modalCancel">Keep working</button>
+      <button class="submitbtn" id="modalOk">Submit</button>
+    </div>
+  </div>
+</div>
+<div class="toast hidden" id="toast"></div>
+
+<script>
+// Question bank. Each entry: [topic, bloom, question, [correct, d1, d2, d3], explanation]
+// The first option is always the correct one; options are shuffled at runtime.
+const BANK = [
+// ───── MODULE 1 ─────
+// Professional Relationships
+["RL","Apply","Capt Reyes and SSgt Ortiz, who work in the same squadron, start a weekend car-detailing business together and split the profits. What is the best assessment?",
+["It violates a specific prohibition: officers will not engage in personal business enterprises with enlisted members","It is acceptable because the business operates off-duty and off-base","It is acceptable as long as SSgt Ortiz is not in Capt Reyes' direct chain of command","Only SSgt Ortiz is at fault because the business was his idea"],
+"Officers will not engage, on a personal basis, in business enterprises with enlisted members. Duty status, location, and chain of command do not change this specific prohibition."],
+["RL","Apply","2d Lt Kim is short on rent and borrows $300 from TSgt Hall until payday. Which statement is correct?",
+["This is prohibited; officers will not borrow from, lend to, or become indebted to enlisted members","This is allowed if the loan is repaid within 30 days","This is allowed because TSgt Hall offered the money voluntarily","This is only a problem if the amount exceeds a month's pay"],
+"Specific prohibition: officers will not lend money to, borrow money from, or otherwise become indebted to enlisted members."],
+["RL","Apply","An officer hosts a monthly poker night with small cash stakes. Several enlisted members from a different squadron attend. What is the issue?",
+["Officers will not gamble with enlisted members, regardless of unit","There is no issue because the enlisted members are not in the officer's unit","There is no issue because the stakes are small","It is only an issue if the officer wins money"],
+"Gambling with enlisted members is a specific prohibition for officers. A different unit or small stakes do not make it acceptable."],
+["RL","Understand","Who holds responsibility for keeping a relationship between two members professional?",
+["The senior-ranking member holds primary responsibility, but both members are responsible","Only the senior-ranking member","Only the junior member, since they must show respect for authority","Only the unit commander"],
+"The senior rank holds the responsibility for ensuring relationships are professional, but both members are responsible for the relationship."],
+["RL","Analyze","Maj Diaz eats lunch almost every day with one of her NCOs. Others start noticing that this NCO gets the best schedules and taskings. What is the central concern?",
+["The relationship creates a perception of favoritism that can erode morale and unit cohesion","Officers are never allowed to eat meals with enlisted members","The NCO alone is responsible for ending the lunches","There is no concern unless favoritism can be proven"],
+"Unprofessional relationships include those that reasonably create the APPEARANCE of favoritism. Ask: does it give the perception of possible favoritism? Proof is not required for the perception to damage morale."],
+["RL","Understand","According to policy, when does a personal relationship become an official concern?",
+["When it adversely affects morale, good order and discipline, respect for authority, unit cohesion, or the mission","Only when it involves members of different services","Only when it violates civilian law","Whenever two members spend time together off duty"],
+"Personal relationships are a personal choice; they become an official concern when they adversely affect morale, good order and discipline, respect for authority, unit cohesion, and mission accomplishment (institutional needs vs. personal desires)."],
+["RL","Remember","Fraternization is best described as:",
+["A specific type of unprofessional relationship between an officer and an enlisted member","Any friendship between members of the same rank","Any relationship between a military member and a civilian","Any off-duty social event involving members of a unit"],
+"Fraternization is a specific type of unprofessional relationship between an officer and an enlisted member."],
+["RL","Apply","Lt Patel and A1C Brooks are coworkers and agree to share an off-base apartment to save money. What is the best assessment?",
+["Prohibited; officers will not share living accommodations with enlisted members","Acceptable because the apartment is off base","Acceptable as long as they split costs evenly","Acceptable if they work in different flights"],
+"Sharing living accommodations with enlisted members is a specific prohibition for officers."],
+["RL","Apply","A captain sells nutritional supplements as a side business and messages several enlisted members in her unit offering discounts. What does this violate?",
+["The prohibition on officers soliciting or making solicited sales to enlisted members","Nothing, as long as the discounts are the same for everyone","Only the rules on gambling","Nothing, because the members are free to say no"],
+"Officers will not solicit or make solicited sales to enlisted members. The influence of rank makes 'they can say no' insufficient."],
+["RL","Evaluate","Two captains in the same flight, one of whom writes the other's performance report, begin dating. Both argue that policy only restricts officer–enlisted relationships. What is the best response?",
+["The policy applies to everyone; the rating relationship creates a perception of favoritism that must be addressed","They are correct; officer–officer relationships are never an official concern","The relationship is fine as long as they keep it private","Only the junior captain needs to be counseled"],
+"The professional relationship policy applies to everyone. Any relationship that creates the appearance of favoritism or misuse of position, such as dating someone you rate, is an official concern. Left unchecked, it 'poisons the environment' and sets a bad example for future leaders."],
+
+// USAF Core Values
+["CV","Remember","What are the three USAF Core Values?",
+["Integrity First, Service Before Self, Excellence in All We Do","Character, Connection, Commitment, Courage","Honesty, Courage, Accountability","Duty, Loyalty, Respect"],
+"USAF Core Values: Integrity First, Service Before Self, Excellence in All We Do. Character, Connection, Commitment, and Courage are the USSF Guardian 4 Cs."],
+["CV","Understand","How do the virtues relate to the Core Values?",
+["The virtues are the observable behaviors that prove we live by the Core Values","The virtues replace the Core Values for enlisted members","The virtues apply only while off duty","The virtues are optional guidelines separate from the Core Values"],
+"The virtues are the behaviors — the evidence and proof — that we live by the Core Values."],
+["CV","Apply","Lt Moore discovers an error in a report she submitted. She tells her commander, asks for feedback, and builds a checklist to prevent it from happening again. Which virtue does this best demonstrate?",
+["Accountability","Humility","Loyalty","Discipline"],
+"Accountability = 'Own it and improve': maintaining transparency, seeking honest feedback, and taking ownership of actions and decisions."],
+["CV","Apply","A flight commander cancels a popular unit event because of a legitimate safety risk, knowing members will be upset with her. Which virtue is she demonstrating?",
+["Courage","Respect","Teamwork","Duty"],
+"Courage = 'Do what's right, even when it's hard': willingness to take personal and professional risks, make unpopular decisions, and admit mistakes."],
+["CV","Apply","At an awards ceremony, a captain credits her team for a project's success and declines personal praise, while continuing to look for ways to help the local community. Which virtue does this reflect?",
+["Humility","Honesty","Mission","Loyalty"],
+"Humility = 'Put others first': serving with gratitude and without arrogance while seeking to add value to our communities."],
+["CV","Apply","An Airman cancels a planned family vacation to fill a short-notice deployment tasking. Which Core Value and virtue does this best represent?",
+["Service Before Self — Duty","Integrity First — Honesty","Excellence in All We Do — Mission","Service Before Self — Respect"],
+"Duty = making sacrifices for the mission. Under Service Before Self, professional duties take precedence over personal desires."],
+["CV","Apply","SrA Lane notices a peer about to falsify a training record. She privately urges him to correct it, helping him act with honor, because she is committed to the team. Which virtue is shown?",
+["Loyalty","Humility","Discipline","Teamwork"],
+"Loyalty = 'Stand by the team and its mission': commitment to something bigger than ourselves, demonstrated by helping each other act with honor."],
+["CV","Apply","A supervisor makes sure every member of a diverse work center is addressed professionally, listened to, and valued as an individual. Which virtue is this?",
+["Respect","Loyalty","Humility","Duty"],
+"Respect = 'Treat every person with dignity' and value them as individuals."],
+["CV","Apply","A lieutenant maintains top fitness, completes developmental education early, and studies constantly to master her career field. Which Core Value does this best reflect?",
+["Excellence in All We Do","Integrity First","Service Before Self","Courage"],
+"Excellence in All We Do: continually advance your craft, increase knowledge, stay in your best physical, mental, and moral shape, and seek developmental education."],
+["CV","Analyze","An Airman in supply says, “My job doesn't really matter — I'm not a pilot.” Which virtue should the leader reinforce?",
+["Teamwork","Discipline","Honesty","Duty"],
+"Teamwork = 'Every contribution matters to the mission': each member's contribution is interdependent with the mission."],
+["CV","Understand","Which virtues are associated with Excellence in All We Do?",
+["Mission, Discipline, Teamwork","Honesty, Courage, Accountability","Duty, Loyalty, Respect","Character, Connection, Commitment"],
+"Excellence: Mission, Discipline, Teamwork. Integrity First: Honesty, Courage, Accountability, Humility. Service Before Self: Duty, Loyalty, Respect."],
+
+// USSF Guardian 4 Cs
+["SC","Remember","What are the USSF Guardian Ideals, known as the 4 Cs?",
+["Character, Connection, Commitment, Courage","Character, Competence, Commitment, Control","Courage, Candor, Cohesion, Commitment","Integrity, Service, Excellence, Courage"],
+"The Guardian 4 Cs: Character, Connection, Commitment, and Courage."],
+["SC","Apply","A Guardian realizes an orbital data error came from her own work. She immediately tells the crew with full transparency and takes ownership of the mistake. Which C does this best reflect?",
+["Character","Connection","Commitment","Courage"],
+"Character: integrity, honesty, candor, transparency, and being accountable for decisions, actions, and inactions."],
+["SC","Apply","A crew commander restructures meetings so junior Guardians can voice concerns without fear, and specifically invites quieter members to share their ideas. Which C does this demonstrate?",
+["Connection","Character","Commitment","Courage"],
+"Connection: foster an environment where people can express themselves without fear, and encourage teammates to share their thoughts and talents."],
+["SC","Apply","After every exercise, a Guardian asks for candid feedback, studies lessons learned, and sets a goal to be better tomorrow than today. Which C is this?",
+["Commitment","Connection","Character","Courage"],
+"Commitment: pursue mastery, learn from experience, seek and offer candid feedback, and work to be better tomorrow than today."],
+["SC","Apply","During a mission brief, a junior Guardian points out a flaw senior leaders missed, holds to her position when challenged, and recommends acting quickly. Which C is this?",
+["Courage","Connection","Commitment","Character"],
+"Courage: saying what needs to be said, holding to our convictions, and having a bias toward action."],
+["SC","Analyze","A Guardian who is overwhelmed asks a teammate for help, and later offers help to another teammate who is struggling. Which C is best demonstrated?",
+["Connection","Commitment","Courage","Character"],
+"Connection: give help when asked and seek assistance when needed — we are stronger together than individually."],
+["SC","Apply","Facing a threat to a friendly satellite, a Guardian recommends a maneuver that accepts calculated risk to protect the asset and defend the domain. Which C does this reflect?",
+["Courage","Commitment","Connection","Character"],
+"Courage includes accepting necessary risk to secure and defend the domain."],
+["SC","Analyze","A Guardian keeps her word to her crew, is honest with her family about mission demands, and honors her obligations to both. Which C is most evident?",
+["Character","Connection","Commitment","Courage"],
+"Character includes honoring obligations to the mission, fellow Guardians, and loved ones, and demonstrating honesty and trustworthiness."],
+
+// US Constitution
+["CN","Remember","According to the course material, which branch of government establishes military authority?",
+["Executive Branch","Legislative Branch","Judicial Branch","The individual states"],
+"Per the study guide, the Executive Branch establishes military authority."],
+["CN","Remember","What are the three governing principles of the US Constitution?",
+["Enumerated Powers, Separation of Powers, Federalism","Checks and Balances, Due Process, Federalism","Popular Sovereignty, Rule of Law, Enumerated Powers","Separation of Powers, Civilian Control, Judicial Review"],
+"The three governing principles: Enumerated Powers, Separation of Powers, and Federalism."],
+["CN","Apply","A state governor controls certain matters within the state, while the national government controls others such as national defense. Which principle is this?",
+["Federalism","Separation of Powers","Enumerated Powers","Judicial Review"],
+"Federalism divides and shares power between the national government and the state governments."],
+["CN","Apply","Congress writes laws, the President executes them, and the courts interpret them, each independently. Which principle is illustrated?",
+["Separation of Powers","Federalism","Enumerated Powers","Due Process"],
+"Separation of Powers: three independent branches — Legislative, Executive, and Judicial. Enumerated Powers are the powers the Constitution grants the federal government."],
+["CN","Analyze","Which amendments govern military officer authority, and why is one excluded?",
+["The first 10 amendments except the 5th, because Article 31 of the UCMJ replaces it","All 27 amendments, with no exceptions","Only the 1st and 2nd Amendments","The first 10 amendments except the 2nd, because service members are issued weapons"],
+"The first 10 amendments minus the 5th; Article 31 of the UCMJ provides the protection against self-incrimination in its place."],
+
+// ───── MODULE 2 ─────
+// Critical Thinking
+["CT","Remember","Which best defines critical thinking?",
+["Thinking carefully about a subject or idea without allowing feelings or opinions to affect you","Making quick decisions based on gut instinct","Finding flaws in other people's arguments","Deferring to the most experienced person in the room"],
+"Critical thinking is the process of thinking carefully about a subject or idea without allowing feelings or opinions to affect you."],
+["CT","Apply","“Because on-time departures fell 15% after the schedule change, we should return to the old schedule.” This is best classified as:",
+["An argument, because it gives a reason for a conclusion","A statement, because it can only be true or false","An opinion, because it cannot be verified","A subjective claim"],
+"A statement is a sentence that can be true or false; an argument attempts to provide a reason for a conclusion ('because… we should…')."],
+["CT","Apply","Which of the following is an opinion rather than a fact?",
+["“The C-17 is the best aircraft the Air Force has ever flown.”","“The squadron has 142 assigned members.”","“The exam has a 90-minute time limit.”","“The wing launched 12 sorties on Tuesday.”"],
+"A fact can be proven — objective and verifiable. An opinion is a person's belief — subjective and not verifiable."],
+["CT","Analyze","Under pressure, a supervisor instantly labels an Airman ‘lazy’ after seeing him sitting down once, without gathering any more information. This is an example of:",
+["System 1 thinking — fast, intuitive, and emotional","System 2 thinking — slow, deliberate, and logical","The intellectual standard of depth","The intellectual standard of fairness"],
+"System 1 is fast, intuitive, and emotional, relying on past patterns and leading to thinking too quickly. System 2 is slow and deliberate, reserved for situations demanding careful consideration."],
+["CT","Remember","Which intellectual standard is the 'gateway' standard — if it isn't met, you can't judge the others?",
+["Clarity","Accuracy","Logic","Fairness"],
+"Clarity is the gateway standard. If a statement is unclear, you can't determine whether it is accurate, relevant, or logical."],
+["CT","Apply","A commander asks, “Instead of ‘a lot,’ can you tell me exactly how many training items are overdue?” Which standard is she applying?",
+["Precision","Clarity","Breadth","Significance"],
+"Precision helps refine information — moving from vague ('a lot') to specific."],
+["CT","Apply","A briefer spends five minutes on the history of the base when the decision at hand is next week's flying schedule. Which standard is violated?",
+["Relevance","Depth","Precision","Accuracy"],
+"Relevance evaluates which parts relate to the question at hand."],
+["CT","Apply","A planner considers how allies, adversaries, and the local population may each interpret a proposed operation. Which standard is she applying?",
+["Breadth","Depth","Precision","Clarity"],
+"Breadth addresses the various interpretations of an issue. Depth addresses its complexities."],
+["CT","Apply","Before finalizing a recommendation, an officer asks herself whether her ego or personal interest in the outcome is shaping her conclusion. Which standard is this?",
+["Fairness","Logic","Significance","Accuracy"],
+"Fairness is the 'gut check' to avoid personal interests, ego, and unjustified assumptions."],
+["CT","Apply","A commander learns a new Airman is a champion marathoner and immediately assumes he must also be an outstanding technician. Which thinking error is this?",
+["Halo effect","Belief perseverance","Answering the wrong question","System 2 thinking"],
+"Halo effect: letting one thing you know about a person shape how you see everything else about them."],
+["CT","Apply","New data clearly shows the old inspection process takes twice as long, yet the section chief insists it is still the better process. Which error does this reflect?",
+["Belief perseverance","Halo effect","Asking the wrong question","Stereotyping"],
+"Belief perseverance: existing beliefs shape how you see an issue, and it's hard to change your mind even when proven wrong."],
+["CT","Analyze","Asked “Why did the project deadline slip?”, a team lead responds by describing how hard everyone worked overtime. Which thinking error is this?",
+["Answering the wrong question (deflection)","Asking the wrong question","Halo effect","Belief perseverance"],
+"Answering the wrong question is deflection. Asking the wrong question is posing leading questions that protect your viewpoint."],
+
+// Problem Solving
+["PS","Remember","Which best defines problem-solving?",
+["The purposeful act of observing a problem, deciding to solve it, considering solutions, and choosing one","Assigning a problem to the lowest-ranking member","Reacting immediately to any issue without analysis","Documenting problems for higher headquarters"],
+"Problem-solving is the purposeful act of observing a problem and deciding to solve it, after considering solutions and deciding upon one."],
+["PS","Understand","What key similarity do the OODA Loop and the 8-Step Practical Problem-Solving Method share?",
+["Both continually re-assess","Both have exactly eight steps","Both are used only in combat","Both eliminate the need for data"],
+"Both the OODA Loop and the PPSM continually re-assess."],
+["PS","Apply","A team keeps asking “why?” to trace late parts deliveries back to a single outdated ordering form. Which PPSM step are they in?",
+["Determine Root Cause","Clarify and Validate the Problem","Develop Countermeasures","Confirm Results and Process"],
+"Determine Root Cause: finding the underlying cause rather than treating symptoms."],
+["PS","Apply","After a fix works, the team writes the new procedure into the unit's operating instructions so all flights use it. Which step is this?",
+["Standardize Successful Processes","See Countermeasures Through","Set Improvement Targets","Confirm Results and Process"],
+"Standardize Successful Processes: lock in what worked across the organization."],
+["PS","Apply","A team sets the goal: “Reduce late reports from 30% to 5% within 90 days.” Which step is this?",
+["Set Improvement Targets","Break Down the Problem and Identify Performance Gap","Develop Countermeasures","Determine Root Cause"],
+"Set Improvement Targets: establish measurable goals for improvement."],
+["PS","Apply","A team compares current on-time rates against the required standard to see how far off they are. Which step is this?",
+["Break Down the Problem and Identify Performance Gap","Set Improvement Targets","Confirm Results and Process","Clarify and Validate the Problem"],
+"Break Down the Problem and Identify Performance Gap: compare current performance to the standard."],
+["PS","Apply","Two months after implementing a new process, the team reviews data to verify whether the change actually solved the problem. Which step is this?",
+["Confirm Results and Process","See Countermeasures Through","Standardize Successful Processes","Determine Root Cause"],
+"Confirm Results and Process: verify the countermeasures produced the intended results."],
+
+// Team Building
+["TB","Remember","What are the four stages of team growth, in order?",
+["Forming, Storming, Norming, Performing","Forming, Norming, Storming, Performing","Storming, Forming, Norming, Performing","Planning, Forming, Executing, Performing"],
+"Forming → Storming → Norming → Performing."],
+["TB","Apply","A newly assembled team is unsure of its roles and mission. What role should the leader take?",
+["Director — be directive and help members learn their roles and the mission","Coach — resolve conflict through open discussion","Collaborator — delegate responsibilities","Visionary — focus on future planning"],
+"Forming → Director: be directive; help the team get to know one another, identify roles, and understand the mission/tasks."],
+["TB","Apply","Team members are arguing about how to divide the work, and tension is rising. What leader role fits best?",
+["Coach — control the chaos through open discussion, listening, input, and conflict resolution","Director — assign roles and dictate tasks","Collaborator — delegate and step back","Visionary — shift the team's focus outward"],
+"Storming → Coach: control the chaos through open discussion, listening, member input, encouragement, and conflict resolution."],
+["TB","Apply","A team has settled into agreed norms and members are gaining confidence. What should the leader do?",
+["Act as Collaborator — delegate responsibilities, build confidence, and maximize members' strengths","Act as Director — tell each member exactly what to do","Act as Coach — focus mainly on resolving conflict","Withdraw completely from the team"],
+"Norming → Collaborator: facilitate by delegating, building confidence, and maximizing strengths."],
+["TB","Apply","A team consistently achieves its goals and solves its own problems. What is the leader's best role?",
+["Visionary — maintain success, plan for the future, develop leadership talent, and encourage new ideas","Director — re-establish tight control","Coach — mediate frequent conflicts","Collaborator — define team roles"],
+"Performing → Visionary. The team no longer relies on the leader to problem-solve."],
+["TB","Analyze","A leader's team is in the Performing stage, yet she continues to dictate every task and approve every decision. What is the problem?",
+["She is using a Director approach suited to Forming instead of a Visionary approach","Nothing — directive leadership is always best","She should move the team back to Storming","She should adopt a laissez-faire approach"],
+"Leader behavior should match the stage. Performing teams need a Visionary who shifts focus outward and develops future leaders."],
+["TB","Understand","What characterizes the Performing stage?",
+["Proficiency in achieving goals, and the team begins solving its own problems","Members are polite but unsure of their roles","Members openly compete and conflict over roles","The team is disbanding after mission completion"],
+"Performing: proficiency in achieving goals and the team begins solving problems."],
+
+// Full Range Leadership
+["FRL","Understand","Which statement best describes laissez-faire leadership?",
+["A hands-off, avoidant approach that is essentially the absence of leadership","A leader who rewards goal achievement","A leader who inspires followers through a shared vision","A leader who closely monitors for deviations"],
+"Laissez-faire is non-leadership — avoid it at all costs."],
+["FRL","Apply","A flight commander promises a down day if the team passes the upcoming inspection. Which behavior is this?",
+["Contingent Reward (transactional)","Individualized Consideration (transformational)","Management by Exception–Passive","Intellectual Stimulation"],
+"Contingent Reward: achieve the goal and you get this reward — a transactional exchange."],
+["FRL","Apply","A supervisor never checks progress and only steps in after an inspection fails. Which behavior is this?",
+["Management by Exception–Passive","Management by Exception–Active","Contingent Reward","Intellectual Stimulation"],
+"MBE-Passive: waiting for things to go wrong before taking corrective action."],
+["FRL","Apply","A supervisor reviews every report daily, searching for deviations from standards, and intervenes at the first sign of a problem. Which behavior is this?",
+["Management by Exception–Active","Management by Exception–Passive","Intellectual Stimulation","Contingent Reward"],
+"MBE-Active: constantly checking for deviations and intervening at the earliest sign of a problem (micromanagement if overused)."],
+["FRL","Apply","A leader challenges her team to question assumptions and find an innovative way to fix a long-standing process. Which behavior is this?",
+["Intellectual Stimulation","Individualized Consideration","Contingent Reward","Management by Exception–Active"],
+"Intellectual Stimulation (transformational) encourages creativity and innovation."],
+["FRL","Apply","A leader meets one-on-one with each Airman to learn their goals, then tailors mentoring to each person's needs. Which behavior is this?",
+["Individualized Consideration","Intellectual Stimulation","Contingent Reward","Management by Exception–Passive"],
+"Individualized Consideration (transformational) addresses the unique needs of each subordinate."],
+["FRL","Evaluate","A new flight commander inherits a unit with low morale and an inspection in three weeks. Which approach best applies Full Range Leadership?",
+["Blend approaches: set clear rewards for inspection goals while mentoring members individually and encouraging their ideas","Use only Contingent Reward until the inspection is over","Use only Management by Exception–Active to prevent mistakes","Step back and let the team self-organize"],
+"FRL means adapting behavior to the situation with a blended approach. On the test, an answer using only one style is incorrect — and never choose laissez-faire."],
+["FRL","Evaluate","A maintenance officer leads a flight of brand-new Airmen working on safety-critical tasks. Which approach best reflects Full Range Leadership?",
+["Actively monitor safety-critical steps while coaching each Airman according to individual needs","Use only Individualized Consideration and trust them completely","Wait until a mishap occurs, then correct the process","Let the senior NCO handle everything and stay hands-off"],
+"Effective FRL blends behaviors: MBE-Active for safety-critical standards plus transformational behaviors (Individualized Consideration) to develop people."],
+
+// Followership
+["FW","Apply","An Airman completes exactly what is assigned, then stops and waits — never thinking critically or taking initiative. Which followership style is this?",
+["Sheep","Yes People","Survivor","Alienated"],
+"Sheep are passive and uncritical, lacking initiative and a sense of responsibility."],
+["FW","Apply","A member is energetic and eager, but agrees with everything the boss says and depends on the boss for direction and inspiration. Which style is this?",
+["Yes People","Effective Follower","Sheep","Alienated"],
+"Yes People are more active than sheep but still depend on the leader for inspiration and become overly deferential."],
+["FW","Apply","A capable NCO frequently criticizes leadership in the break room, offers no solutions, and has disengaged from the mission. Which style is this?",
+["Alienated","Survivor","Sheep","Effective Follower"],
+"Alienated followers are critical, independent thinkers who are cynical, disengaged, and criticize without offering constructive solutions."],
+["FW","Apply","A member does just enough to stay out of trouble and changes behavior to match whatever each new boss seems to want. Which style is this?",
+["Survivor","Yes People","Alienated","Sheep"],
+"Survivors don't fully commit, do the minimum, and shift between other styles depending on the situation."],
+["FW","Apply","An effective follower believes her commander's new plan has a serious flaw. What should she do?",
+["Raise the concern privately with the commander, then support the final decision","Voice her disagreement in front of the whole flight","Quietly ignore the plan and do it her own way","Say nothing to avoid conflict"],
+"Effective followers disagree privately and support rather than undermine — courageous dissent, done the right way."],
+["FW","Analyze","A high-performing lieutenant works 70-hour weeks, keeps her boss informed, and takes initiative, but has missed every family event for months. Which effective-follower characteristic is she neglecting?",
+["Don't forget their families","Display initiative","Keep the boss informed","Anticipate the boss's questions"],
+"'Don't forget their families' is a key characteristic of effective followers — flagged as IMPORTANT in the study guide."],
+["FW","Understand","What is the relationship between followership and leadership?",
+["You have to be a good follower to be a good leader","Leadership and followership are unrelated skills","Only enlisted members need followership skills","Good leaders never need to follow"],
+"You have to be a good follower to be a good leader."],
+
+// Conflict Management
+["CM","Apply","Two flights show up for the same range time because the scheduling email left out which day each flight was assigned. What source of conflict is this?",
+["Communication factor — incomplete information","Structural factor — specialization","Personal behavior factor — personalities","Structural factor — size"],
+"Communication factors: information that is misinterpreted, inaccurate, or incomplete."],
+["CM","Apply","Two sections compete for the same limited budget, and each depends on the other's output to finish its own work. Which source of conflict is this?",
+["Structural factor — resource interdependence","Communication factor — misinterpretation","Personal behavior factor — values","Communication factor — inaccuracy"],
+"Structural factors: size, specialization, rewards (unjust or biased programs), and resource interdependence."],
+["CM","Apply","Two NCOs constantly clash because one values strict procedure and the other values flexibility, and their personalities differ sharply. Which source is this?",
+["Personal behavior factors","Structural factors","Communication factors","Resource interdependence"],
+"Personal behavior factors: differences in perceptions, values, and personalities."],
+["CM","Apply","Two flights negotiate over a fixed number of holiday leave slots; every slot one flight gains, the other loses. Which type of negotiation is this?",
+["Distributive (win/lose)","Integrative (win/win)","Cooperative","Settle"],
+"Distributive negotiation is win/lose over fixed resources."],
+["CM","Apply","Two units work together to design a shared schedule that meets both units' needs. Which negotiation approach is this?",
+["Integrative (win/win)","Distributive (win/lose)","Evade","Insist"],
+"Integrative negotiation is win/win and mutually beneficial."],
+["CM","Apply","A coworker you rarely interact with disagrees with you about which coffee the office should buy. The issue doesn't matter much and neither does the relationship. Which approach fits?",
+["Evade","Insist","Cooperate","Comply"],
+"Evade: low task importance, low people importance."],
+["CM","Apply","A minor disagreement arises with a partner unit you depend on every day. The issue itself is unimportant, but the relationship is very important. Which approach fits?",
+["Comply","Insist","Evade","Settle"],
+"Comply: low task importance, high people importance."],
+["CM","Apply","A contractor wants to skip a safety-of-flight inspection step. The issue is critical, and this is a one-time contract with no ongoing relationship. Which approach fits?",
+["Insist","Comply","Evade","Cooperate"],
+"Insist: high task importance, low people importance."],
+["CM","Apply","A long-term partner unit and your squadron disagree on a critical joint procedure. Both the outcome and the relationship are very important, and you want to build trust. Which approach fits?",
+["Cooperate","Settle","Comply","Insist"],
+"Cooperate: high task, high people, with a desire to build trust."],
+["CM","Apply","Two sections disagree over a moderately important scheduling issue and need a fast resolution before the end of the day. Which approach fits best?",
+["Settle","Cooperate","Evade","Insist"],
+"Settle: neutral on task and people; used for a quick resolution. Read the full question and all answers (RTFQ & RTFA)!"],
+
+// Inspiring Action
+["IA","Apply","“The 99th Logistics Readiness Squadron delivers fuel, vehicles, and supplies to enable wing combat operations.” This is a:",
+["Mission statement","Vision statement","SWOT analysis","Improvement target"],
+"A mission statement states the purpose/goal with action — the 'what' and the 'who.'"],
+["IA","Apply","“To be the Air Force's most trusted and innovative logistics team.” This is a:",
+["Vision statement","Mission statement","Core value","Improvement target"],
+"A vision describes the future state of an organization — an aspiration that answers the 'why' and 'how.'"],
+["IA","Understand","What are the key elements of an effective vision?",
+["Idealistic yet achievable; shared and supported","Detailed, task-focused, and measurable","Written only by the commander and kept confidential","Focused on current problems rather than the future"],
+"Key elements of a vision: idealistic yet achievable, and shared and supported."],
+["IA","Analyze","During a SWOT analysis, the squadron notes that higher headquarters is proposing budget cuts that could eliminate a key program. How should this be categorized?",
+["Threat","Weakness","Opportunity","Strength"],
+"Threats are external forces that could cause problems. SWOT reveals positive forces that work together and potential problems that need to be recognized and addressed."],
+["IA","Apply","A commander publicly recognizes teams that reached milestones toward the new vision. Which technique for encouraging continued action is this?",
+["Reinforce action","Enable action","Frame meaning","Get their attention"],
+"The five techniques: get their attention, articulate the vision, frame meaning, enable action, reinforce action. Recognition reinforces action."],
+
+// Change Management
+["CH","Remember","What are the three stages of Lewin's Change Management model?",
+["Unfreezing, Changing, Refreezing","Forming, Storming, Norming","Plan, Do, Check","Observe, Orient, Decide"],
+"Lewin's model: Unfreezing → Changing → Refreezing."],
+["CH","Apply","Before introducing a new maintenance tracking system, the commander shares data showing the current system causes missed inspections, so members see why change is needed. Which stage is this?",
+["Unfreezing","Changing","Refreezing","Norming"],
+"Unfreezing prepares the organization to accept that change is necessary."],
+["CH","Apply","Months after a new process is rolled out, the leader stays engaged, evaluates results, and updates instructions to lock it in. Which stage is this?",
+["Refreezing","Unfreezing","Changing","Performing"],
+"Refreezing solidifies the new process; leaders must remain engaged and evaluate results."],
+["CH","Apply","An Airman resists a reorganization, saying, “I have no idea what this means for my job.” Which source of resistance is this?",
+["Uncertainty","Self-interest","Distrust","Over-determination"],
+"Uncertainty — fear of the unknown — is a common resistance to change."],
+["CH","Apply","An NCO opposes a new shift schedule because it will reduce his overtime pay. Which source of resistance is this?",
+["Self-interest","Uncertainty","Different perception","Distrust"],
+"Self-interest: resisting change because of what one personally stands to lose."],
+["CH","Apply","Members resist a new initiative because leadership broke its promises the last two times it announced changes. Which source of resistance is this?",
+["Distrust","Uncertainty","Over-determination","Self-interest"],
+"Common resistance to change: distrust, uncertainty, self-interest, different perception, and over-determination."],
+
+// Establishing Expectations
+["EE","Understand","Why is establishing expectations important?",
+["So members know what to prioritize and what is required for mission success","So leaders can avoid giving feedback","So subordinates never need to ask questions","To create a paper trail for discipline"],
+"Expectations help members know what to prioritize and what is required for mission success."],
+["EE","Apply","A flight commander explains how her flight's on-time maintenance directly supports the wing's sortie generation and the Air Force mission. Which guideline is she following?",
+["Help subordinates make the connection to higher-level goals","Seek buy-in","Know what your boss expects","Communicate simply"],
+"Help your subordinates make the connection: link expectations to higher-level goals (the Air Force mission)."],
+["EE","Apply","A leader invites the team to help design a new tracking process instead of simply announcing it. What is the primary benefit?",
+["Seeking buy-in reduces frustration and fosters ownership","It shifts responsibility away from the leader","It guarantees the process is approved faster","It removes the need to communicate expectations"],
+"Seek buy-in: including the team reduces frustration and fosters ownership."],
+["EE","Apply","Before tasking her team on a new project, a lieutenant first confirms with her commander exactly what the commander expects. Which guideline is this?",
+["Know what your boss expects","Seek buy-in","Help subordinates make the connection","Plan to track activities within each task"],
+"Expectations must be clearly communicated and understood — which starts with knowing what your boss expects."],
+["EE","Evaluate","A supervisor's tasking email is full of acronyms, background history, and side topics, and members are confused about what to do. What is the best fix?",
+["Communicate simply: provide the necessary details and exclude information that obscures the message","Add more background information for context","Resend the same email to emphasize its importance","Let members figure it out to build initiative"],
+"Communicate simply; provide necessary details and exclude information that may obscure the message."],
+
+// Organizational Climate
+["OC","Understand","What is the key difference between organizational climate and culture?",
+["Climate is the here-and-now perception and is easier to change; culture is long-term values and beliefs that are hard to change","Climate and culture are the same thing","Culture changes daily; climate takes decades to change","Climate is set only by the commander; culture only by the members"],
+"Culture: ideologies, values, norms, traditions — long-term and hard to change. Climate: attitudes, perceptions, moods — short-term and adjustable."],
+["OC","Apply","After an unpopular announcement, members seem frustrated and morale drops for the week. This reflects the unit's:",
+["Climate","Culture","Mission","Vision"],
+"Climate is the here-and-now: moods, feelings, attitudes, and perceptions."],
+["OC","Apply","A new commander wants to understand and address her unit's climate. What is a key first step?",
+["Review the results of the DEOCS survey","Change the unit's traditions immediately","Rewrite the mission statement","Wait a year before taking any action"],
+"To positively change climate: address your unit (DEOCS results), inspire action, and focus on the little things."],
+["OC","Apply","A leader encourages members to try new ideas and take risks without fear of failure. Which climate-building strategy is this?",
+["Emotional safety and security","Physical safety and security","Maintaining high standards","Refreezing"],
+"Emotional safety & security: respect, openness, trust, and encouragement to try new things without fear of failure. Physical safety covers building management, protocols, and training."],
+
+// ───── MODULE 3 ─────
+// National Security
+["NS","Remember","Which agency leads the Diplomatic instrument of national power?",
+["Department of State","Department of Defense","Department of Commerce","No lead agency"],
+"Diplomatic: Department of State — builds mutual understanding and coalitions; must be backed by the capability of force."],
+["NS","Apply","The US imposes sanctions and tariffs on a country to pressure it to change its behavior. Which instrument of power is being used?",
+["Economic","Diplomatic","Informational","Military"],
+"Economic: embargoes, trade, sanctions, and tariffs."],
+["NS","Apply","A carrier strike group is positioned off an adversary's coast as a show of force, without firing a shot. Which instrument of power is this?",
+["Military","Diplomatic","Economic","Informational"],
+"Military power projects power even without use; it is the most visible IOP, fundamentally coercive, and usually a last resort."],
+["NS","Understand","Which statement about the Informational instrument of power is correct?",
+["It has no single lead agency","It is led by the Department of State","It is led by the Department of Defense","It is usually employed as a last resort"],
+"Informational has no lead agency; it involves information and the infrastructure that stores it."],
+["NS","Remember","Which document, signed by the President, establishes the 'ends' (the 'what') of national strategy?",
+["National Security Strategy","National Defense Strategy","National Military Strategy","Joint Operations Order"],
+"NSS (POTUS / NSC) = Ends, the 'what.' NDS (SecDef) = Ways, the 'how.' NMS (CJCS) = Means/resources."],
+["NS","Understand","Which pairing is correct?",
+["National Military Strategy — Chairman of the Joint Chiefs — means/resources","National Defense Strategy — President — ends","National Security Strategy — SecDef — ways","National Military Strategy — Secretary of State — ends"],
+"NSS = POTUS = Ends; NDS = SecDef = Ways; NMS = CJCS = Means."],
+["NS","Analyze","Why must diplomatic efforts be backed by the capability of force?",
+["Diplomacy is more credible when adversaries know military power can be applied","Diplomacy is always led by the military","Military force is always used before diplomacy","Diplomacy only works with allies"],
+"The Diplomatic IOP must be backed by the capability of force to be credible, even though military force is usually a last resort."],
+
+// What Is War?
+["WW","Remember","What are the three enduring truths about the nature of war?",
+["War is an instrument of policy; a complex and chaotic human endeavor; a clash of opposing wills","Fog, friction, and chance","Ends, ways, and means","Traditional, irregular, and hybrid"],
+"Enduring truths: instrument of policy, complex and chaotic human endeavor, clash of opposing wills. Fog, friction, and chance are the factors that dominate war."],
+["WW","Understand","Which statement correctly describes the two basic themes of war?",
+["The nature of war is enduring and unchanging; the character of war is constantly in flux","The nature of war constantly changes; the character of war never changes","Both the nature and character of war are unchanging","Both the nature and character of war change with technology"],
+"Nature = enduring and unchanging; character = constantly in flux."],
+["WW","Apply","The rise of drones, cyber operations, and space-based capabilities changes how wars are fought. This reflects a change in the:",
+["Character of war","Nature of war","Enduring truths of war","Instruments of power"],
+"Technology and tactics change the character of war; its nature stays the same."],
+["WW","Apply","A commander must decide without reliable intelligence about the enemy's location or strength. Which factor is affecting him?",
+["Fog","Friction","Chance","Clash of wills"],
+"Fog is the uncertainty that comes from incomplete or unreliable information."],
+["WW","Apply","A simple resupply mission becomes extremely difficult because of fatigue, equipment breakdowns, and miscommunication. Which factor is this?",
+["Friction","Fog","Chance","Character of war"],
+"Friction makes simple things difficult."],
+["WW","Apply","A sudden, unforecast sandstorm grounds all aircraft at the decisive moment of an operation. Which factor best describes this?",
+["Chance","Friction","Fog","Clash of wills"],
+"Chance: unpredictable events outside anyone's control."],
+["WW","Apply","An insurgent group competes with the host-nation government for the support of the local population. What form of warfare is this?",
+["Irregular warfare","Traditional warfare","Conventional force-on-force warfare","Strategic attack"],
+"Irregular warfare: non-state actors trying to gain influence over the population. Traditional warfare: force on force using conventional capabilities."],
+
+// DAF Core Functions
+["DF","Remember","Which defines airpower?",
+["The ability to project power through military control and exploitation in, from, and through the air","The ability to accomplish military objectives in, from, and to the space domain","The total number of aircraft in the inventory","The ability to defend the homeland from air attack only"],
+"Airpower: the ability to project power through military control and exploitation in, from, and through the air. The second option defines spacepower."],
+["DF","Remember","Which list contains the five USAF core functions?",
+["Air Superiority, Global Precision Attack, Rapid Global Mobility, Global ISR, Command and Control","Space Control, Global Mission Operations, Space Access, Enterprise, Command and Control","Air Superiority, Close Air Support, Airlift, Refueling, Cyber","Deterrence, Defense, Mobility, ISR, Logistics"],
+"USAF core functions: Air Superiority, Global Precision Attack, Rapid Global Mobility, Global ISR, and Command and Control."],
+["DF","Remember","Which list contains the USSF core and enterprise functions?",
+["Space Control, Global Mission Operations, Space Access, Enterprise","Space Superiority, Space Lift, Space ISR, Command and Control","Air Superiority, Space Access, Cyber, Enterprise","Space Domain Awareness, Missile Warning, GPS, Launch"],
+"USSF: Space Control, Global Mission Operations, Space Access, and the Enterprise function."],
+["DF","Apply","Fighters establish control of the skies so friendly forces are free from attack and free to attack. Which core function is this?",
+["Air Superiority","Global Precision Attack","Command and Control","Global ISR"],
+"Air Superiority: freedom from attack and freedom to attack."],
+["DF","Apply","C-17s deliver humanitarian supplies within hours of a disaster on the other side of the world. Which core function is this?",
+["Rapid Global Mobility","Global Precision Attack","Space Access","Air Superiority"],
+"Rapid Global Mobility: delivery on demand."],
+["DF","Apply","A single bomber sortie strikes a target and achieves tactical, operational, and strategic effects. Which core function is this?",
+["Global Precision Attack","Air Superiority","Global ISR","Rapid Global Mobility"],
+"Global Precision Attack: any target, any time — tactical, operational, and strategic effects in a single mission."],
+["DF","Understand","Which USAF core function integrates all the other functions?",
+["Command and Control","Global ISR","Air Superiority","Rapid Global Mobility"],
+"C2 is the function that integrates all other functions. Global ISR provides situational awareness of the battlespace."],
+["DF","Apply","Guardians launch satellites into orbit and support moving equipment and personnel into, through, and back from space. Which USSF function is this?",
+["Space Access","Space Control","Global Mission Operations","Enterprise"],
+"Space Access: movement and support of equipment and personnel into, through, and back from space."],
+["DF","Apply","Guardians deliver missile warning and GPS effects to joint forces around the world. Which USSF function is this?",
+["Global Mission Operations","Space Control","Space Access","Enterprise"],
+"Global Mission Operations: deliver space effects. Space Control: contest and control space. Enterprise: the enablers that support the core functions."],
+["DF","Understand","What is the role of doctrine for the USAF and USSF?",
+["It provides an 80–90% solution — official advice on how to approach a problem","It is a directive that must be followed exactly in every case","It replaces the commander's judgment","It applies only during peacetime"],
+"Doctrine provides an 80–90% solution to the problem at hand — official advice, not a rigid checklist."],
+
+// Military Planning
+["MP","Understand","Why does the military use a formal planning process?",
+["It provides a structured, logical framework to analyze complex situations, improving collaboration and reducing risk","It guarantees a plan will never need to change","It removes the commander from decision-making","It eliminates the need for wargaming"],
+"A formal process provides a structured logical framework to analyze complex situations, improves collaboration, and reduces risk."],
+["MP","Apply","Planners determine the desired end state for an operation. Which JPP step is this?",
+["Mission Analysis","Planning Initiation","COA Development","COA Comparison"],
+"Mission Analysis determines the end state. Planning Initiation defines the problem clearly."],
+["MP","Apply","The staff brainstorms several different ways to accomplish the mission. Which JPP step is this?",
+["COA Development","COA Analysis and Wargaming","COA Comparison","Mission Analysis"],
+"COA Development: brainstorm multiple different solutions to the problem."],
+["MP","Apply","Planners analyze each COA by playing it out against likely enemy reactions to discover second- and third-order effects. Which step is this?",
+["COA Analysis and Wargaming","COA Comparison","COA Approval","COA Development"],
+"If you see 'analyze' on the test, think wargaming. COA Analysis & Wargaming evaluates validity and uncovers unintended consequences."],
+["MP","Apply","The staff evaluates COA 1, COA 2, and COA 3 side by side against the same criteria. Which step is this?",
+["COA Comparison","COA Analysis and Wargaming","COA Approval","Plan and Order Development"],
+"COA Comparison compares COAs against each other. In COA Approval, the commander makes the decision."],
+["MP","Apply","In a SMEAC order, which paragraph contains clear and unambiguous instructions for what each unit will do?",
+["Execution","Situation","Mission","Command and Signal"],
+"SMEAC: Situation (big picture), Mission (what & why), Execution (clear, unambiguous instructions), Administration (logistics & sustainment), Command & Signal (C2)."],
+["MP","Apply","A proposed COA would accomplish the mission, but the unit lacks the aircraft and fuel to execute it. Which COA attribute does it fail?",
+["Feasible","Distinguishable","Complete","Suitable"],
+"DFACS: Distinguishable, Feasible, Acceptable, Complete, Suitable. Feasible = can be accomplished with available resources."],
+["MP","Analyze","The staff presents COA A and COA B, but they differ only in the time of departure. Which attribute is weakest?",
+["Distinguishable","Acceptable","Suitable","Feasible"],
+"Distinguishable: each COA must be meaningfully different from the others."],
+
+// How the DAF Deploys
+["DP","Remember","What is the purpose of AFFORGEN?",
+["A sustainable, capacity-driven model for presenting Air Force forces to Joint Force Commanders","A predictable, standardized battle rhythm for the Space Force","A system for promoting officers","A training pipeline for new recruits"],
+"AFFORGEN: the Air Force's sustainable, capacity-driven model for presenting forces to Joint Force Commanders."],
+["DP","Remember","What is the purpose of SPAFORGEN?",
+["Establishes a predictable, standardized battle rhythm","Presents capacity-driven airpower to Joint Force Commanders","Assigns the USSF core functions","Produces the National Military Strategy"],
+"SPAFORGEN establishes a predictable, standardized battle rhythm."],
+["DP","Remember","What are the four AFFORGEN phases, in order?",
+["Reset, Prepare, Ready, Commit","Prepare, Ready, Commit, Reset","Plan, Prepare, Execute, Assess","Ready, Commit, Reset, Recover"],
+"AFFORGEN: Reset → Prepare → Ready → Commit (24-month cycle, about 6 months per phase)."],
+["DP","Analyze","Which AFFORGEN phase does NOT appear in the SPAFORGEN cycle?",
+["Reset","Prepare","Ready","Commit"],
+"SPAFORGEN has three phases: Prepare, Ready, Commit. AFFORGEN adds Reset."],
+["DP","Apply","A unit has just returned from deployment and is recovering its personnel and equipment. Under AFFORGEN, which phase is it most likely in?",
+["Reset","Commit","Ready","Prepare"],
+"Reset follows Commit; units recover before preparing again. Readiness = the ability to fulfill the requirements of the mission."],
+
+// Military Justice
+["MJ","Remember","What is the function of the UCMJ?",
+["Provides a standardized system to ensure good order and discipline","Serves as the owner/operator manual for the military justice system","Establishes the National Defense Strategy","Defines the USAF core functions"],
+"UCMJ: a standardized system to ensure good order and discipline. MCM: the owner/operator manual for the military justice system."],
+["MJ","Understand","Why does the military need its own justice system?",
+["Crimes unique to the military, good order and discipline, worldwide operations, and global jurisdiction","Because civilian courts can never try anyone in uniform","To replace the US Constitution for service members","To remove rights from the accused"],
+"Reasons: crimes unique to the military, good order and discipline, worldwide operations, and global jurisdiction."],
+["MJ","Apply","Before questioning an Airman suspected of an offense, investigators must advise him of his right to remain silent. Which provision guarantees this?",
+["Article 31, UCMJ","Article 15, UCMJ","The 2nd Amendment","The Manual for Courts-Martial preamble"],
+"Article 31 protects against compelled self-incrimination and takes the place of the 5th Amendment for service members. Rights also include counsel and protections around search and seizure."],
+["MJ","Apply","A supervisor gives an Airman a Letter of Counseling (LOC) for repeated tardiness. Which category of disciplinary tool is this?",
+["Administrative action","Punitive action","Preventative discipline","Judicial proceeding"],
+"Administrative actions: RIC, LOC, LOA, LOR, UIF, and control roster."],
+["MJ","Apply","A commander offers an Airman nonjudicial punishment under Article 15. Which category is this?",
+["Punitive action","Administrative action","Preventative discipline","Victim advocacy"],
+"Punitive actions: nonjudicial punishment (Article 15) and judicial proceedings."],
+["MJ","Apply","An Airman accused of misconduct wants independent legal advice from a defense attorney. Whom should he contact?",
+["Area Defense Counsel","Staff Judge Advocate","Victims' Counsel","His commander"],
+"The Area Defense Counsel represents military personnel. The SJA advises the Air Force/Space Force and commanders."],
+["MJ","Apply","A commander needs legal advice on how to handle a misconduct case in her unit. Whom should she consult?",
+["Staff Judge Advocate","Area Defense Counsel","Victims' Counsel","The accused member's supervisor"],
+"The Staff Judge Advocate advises the Air Force/Space Force and its commanders."],
+["MJ","Apply","A member who was the victim of sexual assault wants her own legal representation through the process. Who provides it?",
+["Victims' Counsel","Area Defense Counsel","Staff Judge Advocate","First Sergeant"],
+"Victims' Counsel represents victims of sexual assault and domestic violence."]
+];
+
+
+const TOPICS = {
+  RL:["Professional Relationships",1], CV:["USAF Core Values",1], SC:["USSF Guardian 4 Cs",1], CN:["US Constitution",1],
+  CT:["Critical Thinking",2], PS:["Problem Solving",2], TB:["Team Building",2], FRL:["Full Range Leadership",2],
+  FW:["Followership",2], CM:["Conflict Management",2], IA:["Inspiring Action",2], CH:["Change Management",2],
+  EE:["Establishing Expectations",2], OC:["Organizational Climate",2],
+  NS:["National Security",3], WW:["What Is War?",3], DF:["DAF Core Functions",3], MP:["Military Planning",3],
+  DP:["How the DAF Deploys",3], MJ:["Military Justice",3]
+};
+const BLOOMS = ["Remember","Understand","Apply","Analyze","Evaluate"];
+const LETTERS = ["A","B","C","D"];
+const EXAM_SECONDS = 90*60, PER_Q = 36;
+
+const $ = id => document.getElementById(id);
+const store = {
+  get(k){ try{ return JSON.parse(localStorage.getItem("otsprep:"+k)); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem("otsprep:"+k, JSON.stringify(v)); }catch(e){} }
+};
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function fmt(s){ s=Math.max(0,Math.round(s)); const h=Math.floor(s/3600), m=Math.floor(s%3600/60), x=s%60; return (h?h+":"+String(m).padStart(2,"0"):m)+":"+String(x).padStart(2,"0"); }
+
+/* ---------- settings ---------- */
+const saved = store.get("settings") || {};
+const settings = {
+  count: saved.count || 50,
+  mods: Array.isArray(saved.mods) && saved.mods.length ? saved.mods : [1,2,3],
+  timer: saved.timer || "exam",
+  mode: saved.mode || "exam"
+};
+function bindSeg(id, key, multi){
+  const seg = $(id);
+  seg.addEventListener("click", e=>{
+    const b = e.target.closest("button"); if(!b) return;
+    const v = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v;
+    if(multi){
+      const set = new Set(settings[key]);
+      if(set.has(v)){ if(set.size>1) set.delete(v); } else set.add(v);
+      settings[key] = [...set].sort();
+    } else settings[key] = v;
+    paintSettings();
+  });
+}
+function paintSettings(){
+  const segs = {countSeg:"count", modSeg:"mods", timerSeg:"timer", modeSeg:"mode"};
+  for(const id in segs){
+    const key = segs[id];
+    $(id).querySelectorAll("button").forEach(b=>{
+      const v = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v;
+      b.setAttribute("aria-pressed", Array.isArray(settings[key]) ? settings[key].includes(v) : settings[key]===v);
+    });
+  }
+  const pool = BANK.filter(q=>settings.mods.includes(TOPICS[q[0]][1])).length;
+  $("poolNote").textContent = pool + " questions selected";
+  const n = Math.min(settings.count, pool);
+  let t = n < settings.count ? `Only ${pool} questions in the selected modules, so you'll get ${n}. ` : "";
+  if(settings.timer==="exam") t += `Time limit: 90 minutes.`;
+  else if(settings.timer==="scaled") t += `Time limit: ${fmt(n*PER_Q)} (the exam pace of 150 questions in 90 minutes).`;
+  else t += "No time limit.";
+  $("startNote").textContent = t;
+  store.set("settings", settings);
+}
+bindSeg("countSeg","count"); bindSeg("modSeg","mods",true); bindSeg("timerSeg","timer"); bindSeg("modeSeg","mode");
+
+/* ---------- build quiz ---------- */
+let S = null, tick = null;
+
+function pickQuestions(pool, n){
+  // round-robin across topics so small quizzes still cover many topics
+  const by = {};
+  shuffle(pool).forEach(q=>{ (by[q.t] = by[q.t] || []).push(q); });
+  const keys = shuffle(Object.keys(by)); const out = [];
+  while(out.length < n){
+    let added = false;
+    for(const k of keys){ if(by[k].length && out.length<n){ out.push(by[k].pop()); added = true; } }
+    if(!added) break;
+  }
+  return shuffle(out);
+}
+function makeQ(raw, id){
+  const order = shuffle([0,1,2,3]);
+  return { id, t:raw[0], b:raw[1], q:raw[2], opts:order.map(i=>raw[3][i]), correct:order.indexOf(0), e:raw[4] };
+}
+function startQuiz(fromIds){
+  let pool;
+  if(fromIds){ pool = fromIds.map(id=>({id, t:BANK[id][0]})); }
+  else pool = BANK.map((r,id)=>({id, t:r[0]})).filter(x=>settings.mods.includes(TOPICS[x.t][1]));
+  const n = fromIds ? pool.length : Math.min(settings.count, pool.length);
+  const picked = fromIds ? shuffle(pool) : pickQuestions(pool, n);
+  const qs = picked.map(p=>makeQ(BANK[p.id], p.id));
+  let limit = 0;
+  if(settings.timer==="exam") limit = EXAM_SECONDS;
+  else if(settings.timer==="scaled") limit = qs.length*PER_Q;
+  S = { qs, ans:Array(qs.length).fill(null), flags:Array(qs.length).fill(false), idx:0, mode:settings.mode,
+        limit, start:Date.now(), end: limit ? Date.now()+limit*1000 : 0, done:false, warned:{} };
+  show("quiz"); buildPalette(); renderQ(); startTimer();
+  window.scrollTo({top:0});
+}
+
+/* ---------- timer ---------- */
+function startTimer(){
+  clearInterval(tick);
+  const el = $("timer");
+  el.classList.remove("hidden","warn","crit");
+  if(!S.limit){ el.textContent = "Untimed"; return; }
+  const upd = ()=>{
+    const left = (S.end - Date.now())/1000;
+    el.textContent = fmt(left);
+    el.classList.toggle("warn", left<=600 && left>300);
+    el.classList.toggle("crit", left<=300);
+    if(left<=600 && !S.warned[10] && S.limit>900){ S.warned[10]=1; toast("10 minutes remaining"); }
+    if(left<=300 && !S.warned[5] && S.limit>600){ S.warned[5]=1; toast("5 minutes remaining"); }
+    if(left<=0){ toast("Time is up. Your exam was submitted."); finish(); }
+  };
+  upd(); tick = setInterval(upd, 250);
+}
+
+/* ---------- render question ---------- */
+function renderQ(){
+  const q = S.qs[S.idx], a = S.ans[S.idx];
+  $("qnum").textContent = `Question ${S.idx+1} of ${S.qs.length}`;
+  $("qtopic").textContent = TOPICS[q.t][0];
+  $("qbloom").textContent = q.b;
+  $("qtext").textContent = q.q;
+  const locked = S.mode==="study" && a!==null;
+  $("opts").innerHTML = q.opts.map((o,i)=>{
+    let cls = "opt";
+    if(locked){ if(i===q.correct) cls+=" right"; else if(i===a) cls+=" wrong"; }
+    else if(i===a) cls+=" sel";
+    return `<button class="${cls}" data-i="${i}" ${locked?"disabled":""}><span class="k">${LETTERS[i]}</span><span class="t">${esc(o)}</span></button>`;
+  }).join("");
+  const ex = $("qexplain");
+  if(locked){
+    const ok = a===q.correct;
+    ex.innerHTML = `<b>${ok?"Correct.":"Not quite. Correct answer: "+LETTERS[q.correct]+"."}</b> ${esc(q.e)}`;
+    ex.classList.remove("hidden");
+  } else ex.classList.add("hidden");
+  $("flagBtn").setAttribute("aria-pressed", S.flags[S.idx]);
+  $("prevBtn").disabled = S.idx===0;
+  $("nextBtn").classList.toggle("hidden", S.idx===S.qs.length-1);
+  const answered = S.ans.filter(x=>x!==null).length;
+  $("progBar").style.width = (answered/S.qs.length*100)+"%";
+  $("qcounter").textContent = `${answered}/${S.qs.length}`;
+  $("qcounter").classList.remove("hidden");
+  $("answeredNote").textContent = `${answered} answered · ${S.flags.filter(Boolean).length} flagged`;
+  paintPalette();
+}
+function choose(i){
+  if(!S || S.done) return;
+  if(S.mode==="study" && S.ans[S.idx]!==null) return;
+  S.ans[S.idx] = i; renderQ();
+}
+function go(d){ const n=S.idx+d; if(n>=0 && n<S.qs.length){ S.idx=n; renderQ(); $("qcard").scrollIntoView({block:"nearest"}); } }
+
+function buildPalette(){
+  $("palette").innerHTML = S.qs.map((_,i)=>`<button data-i="${i}">${i+1}</button>`).join("");
+}
+function paintPalette(){
+  $("palette").querySelectorAll("button").forEach((b,i)=>{
+    b.className = "";
+    if(S.mode==="study" && S.ans[i]!==null) b.classList.add(S.ans[i]===S.qs[i].correct?"ok":"no");
+    else if(S.ans[i]!==null) b.classList.add("ans");
+    if(S.flags[i]) b.classList.add("flg");
+    if(i===S.idx) b.classList.add("cur");
+  });
+}
+
+/* ---------- finish + results ---------- */
+function askSubmit(){
+  const un = S.ans.filter(x=>x===null).length, fl = S.flags.filter(Boolean).length;
+  let t = un ? `You have ${un} unanswered question${un>1?"s":""}. Unanswered questions are scored as wrong.` : "All questions are answered.";
+  if(fl) t += ` ${fl} question${fl>1?"s are":" is"} flagged for review.`;
+  $("modalText").textContent = t;
+  $("modal").classList.remove("hidden");
+  $("modalOk").focus();
+}
+function finish(){
+  if(!S || S.done) return;
+  S.done = true; S.used = Math.min((Date.now()-S.start)/1000, S.limit||Infinity);
+  clearInterval(tick);
+  $("modal").classList.add("hidden");
+  $("timer").classList.add("hidden"); $("qcounter").classList.add("hidden");
+  renderResults(); show("results"); window.scrollTo({top:0});
+}
+function barRows(groups, order){
+  return order.filter(k=>groups[k]).map(k=>{
+    const g = groups[k], p = Math.round(g.c/g.n*100);
+    const col = p>=80 ? "var(--good)" : p>=60 ? "var(--flag)" : "var(--bad)";
+    return `<div class="bar"><span>${esc(g.label)}</span><div class="track"><div class="fill" style="width:${p}%;background:${col}"></div></div><span class="num">${g.c}/${g.n}</span></div>`;
+  }).join("");
+}
+function renderResults(){
+  const n = S.qs.length;
+  const c = S.qs.filter((q,i)=>S.ans[i]===q.correct).length;
+  const p = Math.round(c/n*100);
+  $("pct").textContent = p+"%"; $("frac").textContent = `${c} of ${n}`;
+  const ring = $("ring"); ring.style.setProperty("--p", p);
+  ring.style.setProperty("--ring-c", p>=80?"var(--good)":p>=60?"var(--flag)":"var(--bad)");
+  $("verdict").textContent = p>=90 ? "Outstanding" : p>=80 ? "Strong work" : p>=70 ? "Getting there" : "Keep studying";
+  $("timeUsed").textContent = `Time used: ${fmt(S.used)}` + (S.limit ? ` of ${fmt(S.limit)}` : "");
+  const un = S.ans.filter(x=>x===null).length;
+  $("unans").textContent = un ? `${un} left unanswered` : "";
+  const byT = {}, byB = {};
+  S.qs.forEach((q,i)=>{
+    const ok = S.ans[i]===q.correct ? 1 : 0;
+    (byT[q.t] = byT[q.t] || {label:TOPICS[q.t][0], n:0, c:0}); byT[q.t].n++; byT[q.t].c+=ok;
+    (byB[q.b] = byB[q.b] || {label:q.b, n:0, c:0}); byB[q.b].n++; byB[q.b].c+=ok;
+  });
+  // weakest topics first
+  const tOrder = Object.keys(byT).sort((a,b)=> byT[a].c/byT[a].n - byT[b].c/byT[b].n || byT[b].n-byT[a].n);
+  $("topicBars").innerHTML = barRows(byT, tOrder);
+  $("bloomBars").innerHTML = barRows(byB, BLOOMS);
+  const missed = n - c;
+  $("retryMissedBtn").classList.toggle("hidden", missed===0);
+  $("retryMissedBtn").textContent = `Retry ${missed} missed question${missed===1?"":"s"}`;
+  setFilter(missed ? "wrong" : "all");
+}
+let revFilter = "wrong";
+function setFilter(v){
+  revFilter = v;
+  $("revFilters").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.v===v));
+  const items = S.qs.map((q,i)=>({q,i})).filter(({q,i})=>
+    v==="all" || (v==="wrong" && S.ans[i]!==q.correct) || (v==="flag" && S.flags[i]));
+  $("review").innerHTML = items.length ? items.map(({q,i})=>{
+    const a = S.ans[i], ok = a===q.correct;
+    const yours = a===null ? "<i>No answer</i>" : `${LETTERS[a]}. ${esc(q.opts[a])}`;
+    return `<div class="rev">
+      <div class="qmeta"><span class="qnum">Q${i+1}</span><span class="tag">${esc(TOPICS[q.t][0])}</span><span class="tag bloom">${q.b}</span>${S.flags[i]?'<span class="tag" style="color:var(--flag)">⚑ Flagged</span>':""}</div>
+      <div class="qtext">${esc(q.q)}</div>
+      <div class="ans"><b class="${ok?"mark-ok":"mark-no"}">${ok?"✓":"✗"} Your answer:</b><span>${yours}</span></div>
+      ${ok?"":`<div class="ans"><b class="mark-ok">Correct:</b><span>${LETTERS[q.correct]}. ${esc(q.opts[q.correct])}</span></div>`}
+      <div class="explain">${esc(q.e)}</div>
+    </div>`;
+  }).join("") : `<p class="note">Nothing to show here.</p>`;
+}
+
+/* ---------- views + events ---------- */
+function show(view){ ["home","quiz","results"].forEach(v=>$(v).classList.toggle("hidden", v!==view)); }
+let toastT;
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.remove("hidden"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.add("hidden"),3200); }
+
+$("startBtn").onclick = ()=>startQuiz();
+$("opts").onclick = e=>{ const b=e.target.closest(".opt"); if(b) choose(+b.dataset.i); };
+$("prevBtn").onclick = ()=>go(-1);
+$("nextBtn").onclick = ()=>go(1);
+$("flagBtn").onclick = ()=>{ S.flags[S.idx]=!S.flags[S.idx]; renderQ(); };
+$("submitBtn").onclick = askSubmit;
+$("palette").onclick = e=>{ const b=e.target.closest("button"); if(b){ S.idx=+b.dataset.i; renderQ(); $("qcard").scrollIntoView({behavior:"smooth",block:"start"}); } };
+$("modalCancel").onclick = ()=>$("modal").classList.add("hidden");
+$("modalOk").onclick = finish;
+$("modal").onclick = e=>{ if(e.target.id==="modal") $("modal").classList.add("hidden"); };
+$("newBtn").onclick = ()=>{ S=null; show("home"); paintSettings(); window.scrollTo({top:0}); };
+$("retryMissedBtn").onclick = ()=>{ const ids = S.qs.filter((q,i)=>S.ans[i]!==q.correct).map(q=>q.id); startQuiz(ids); };
+$("revFilters").onclick = e=>{ const b=e.target.closest("button"); if(b) setFilter(b.dataset.v); };
+
+document.addEventListener("keydown", e=>{
+  if(!S || S.done || $("quiz").classList.contains("hidden") || e.ctrlKey || e.metaKey || e.altKey) return;
+  if(!$("modal").classList.contains("hidden")){ if(e.key==="Escape") $("modal").classList.add("hidden"); return; }
+  const k = e.key.toLowerCase();
+  const map = {a:0,b:1,c:2,d:3,"1":0,"2":1,"3":2,"4":3};
+  if(k in map){ choose(map[k]); e.preventDefault(); }
+  else if(k==="arrowright"){ go(1); e.preventDefault(); }
+  else if(k==="arrowleft"){ go(-1); e.preventDefault(); }
+  else if(k==="f"){ S.flags[S.idx]=!S.flags[S.idx]; renderQ(); }
+});
+window.addEventListener("beforeunload", e=>{ if(S && !S.done){ e.preventDefault(); e.returnValue=""; } });
+
+// theme toggle (follows system by default)
+(function(){
+  const root = document.documentElement, t = store.get("theme");
+  if(t) root.dataset.theme = t;
+  $("themeBtn").onclick = ()=>{
+    const dark = root.dataset.theme ? root.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark"; store.set("theme", root.dataset.theme);
+  };
+})();
+
+$("statTotal").textContent = BANK.length;
+paintSettings();
+</script>
+</body>
+</html>
